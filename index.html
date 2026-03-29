@@ -260,6 +260,112 @@
         .floating {
             animation: float 3s ease-in-out infinite;
         }
+
+        /* Stats Counter Bar */
+        .stats-section {
+            background: rgba(17, 24, 39, 0.8);
+            border-top: 1px solid rgba(59, 130, 246, 0.3);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .stat-item {
+            position: relative;
+            padding: 1.5rem 2rem;
+        }
+
+        .stat-item::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 25%;
+            height: 50%;
+            width: 1px;
+            background: rgba(59, 130, 246, 0.3);
+        }
+
+        .stat-item:last-child::after {
+            display: none;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #3b82f6;
+            text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        }
+
+        .stat-label {
+            color: #93c5fd;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: 0.25rem;
+        }
+
+        @media (max-width: 768px) {
+            .stat-number {
+                font-size: 1.75rem;
+            }
+            .stat-item {
+                padding: 1rem;
+            }
+            .stat-item::after {
+                display: none;
+            }
+        }
+
+        /* Glitch text effect */
+        .glitch-text {
+            position: relative;
+        }
+
+        /* Active nav link */
+        .nav-link.active {
+            color: #3b82f6;
+            position: relative;
+        }
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #3b82f6;
+            border-radius: 1px;
+            box-shadow: 0 0 8px rgba(59, 130, 246, 0.6);
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 48px;
+            height: 48px;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.25rem;
+            cursor: pointer;
+            z-index: 100;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+        }
+        .back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: all;
+        }
+        .back-to-top:hover {
+            background: #2563eb;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
+        }
     </style>
 </head>
 
@@ -273,11 +379,11 @@
                 class="text-xl sm:text-2xl font-bold text-white hover:text-blue-400 transition-colors focus-visible"
                 aria-label="Tirth Shah - Home">Tirth Shah</a>
             <div class="hidden md:flex items-center space-x-6 lg:space-x-8 text-gray-300">
-                <a href="#about" class="hover:text-blue-400 transition-colors focus-visible">About</a>
-                <a href="#experience" class="hover:text-blue-400 transition-colors focus-visible">Experience</a>
-                <a href="#education" class="hover:text-blue-400 transition-colors focus-visible">Education</a>
-                <a href="#projects" class="hover:text-blue-400 transition-colors focus-visible">Projects</a>
-                <a href="#skills" class="hover:text-blue-400 transition-colors focus-visible">Skills</a>
+                <a href="#about" class="nav-link hover:text-blue-400 transition-colors focus-visible">About</a>
+                <a href="#experience" class="nav-link hover:text-blue-400 transition-colors focus-visible">Experience</a>
+                <a href="#education" class="nav-link hover:text-blue-400 transition-colors focus-visible">Education</a>
+                <a href="#projects" class="nav-link hover:text-blue-400 transition-colors focus-visible">Projects</a>
+                <a href="#skills" class="nav-link hover:text-blue-400 transition-colors focus-visible">Skills</a>
                 <a href="#contact"
                     class="bg-accent hover-bg-accent text-white font-semibold px-4 py-2 rounded-lg transition-colors focus-visible">Contact</a>
             </div>
@@ -311,7 +417,7 @@
                 <h1 class="text-3xl sm:text-4xl md:text-6xl font-bold text-white leading-tight fade-in-down floating">I
                     Build <span class="accent-color text-glow">Engaging</span> Worlds</h1>
                 <p class="text-base sm:text-lg md:text-2xl mt-4 text-gray-300 max-w-3xl mx-auto fade-in-down"
-                    style="animation-delay: 0.3s;">A passionate Game Developer with 12 months of experience in Cocos
+                    style="animation-delay: 0.3s;">A passionate Game Developer with 1.5 years of experience in Cocos
                     Creator, turning creative concepts into fun, interactive mobile games.</p>
                 <div class="mt-8 flex justify-center space-x-4 sm:space-x-6 fade-in-down"
                     style="animation-delay: 0.6s;">
@@ -331,14 +437,43 @@
                         <i class="fas fa-envelope"></i>
                     </a>
                 </div>
-                <a href="#projects"
-                    class="mt-12 inline-block bg-accent hover-bg-accent text-white font-bold py-3 px-6 sm:px-8 rounded-full text-base sm:text-lg transition-all duration-300 hover:transform hover:scale-105 fade-in-down focus-visible"
-                    style="animation-delay: 0.9s;">View My Work</a>
+                <div class="mt-10 flex flex-col sm:flex-row justify-center items-center gap-4 fade-in-down" style="animation-delay: 0.9s;">
+                    <a href="#projects"
+                        class="inline-block bg-accent hover-bg-accent text-white font-bold py-3 px-6 sm:px-8 rounded-full text-base sm:text-lg transition-all duration-300 hover:transform hover:scale-105 focus-visible">
+                        <i class="fas fa-gamepad mr-2"></i>View My Work</a>
+                    <a href="#contact"
+                        class="inline-block border-2 border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white font-bold py-3 px-6 sm:px-8 rounded-full text-base sm:text-lg transition-all duration-300 hover:transform hover:scale-105 focus-visible">
+                        <i class="fas fa-envelope mr-2"></i>Contact Me</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Counter Bar -->
+        <section class="stats-section py-6 sm:py-8">
+            <div class="container mx-auto px-4 sm:px-6">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="15">0</div>
+                        <div class="stat-label">Games Published</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="50" data-suffix="L+">0</div>
+                        <div class="stat-label">Total Downloads</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="1.5" data-suffix="+" data-decimal="true">0</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="4" data-suffix="+">0</div>
+                        <div class="stat-label">Engines & Languages</div>
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- About Me Section -->
-        <section id="about" class="py-10 sm:py-14 md:py-20">
+        <section id="about" class="py-10 sm:py-14 md:py-20 section-reveal">
             <div class="container mx-auto px-4 sm:px-6 text-center">
                 <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold section-title mb-4">About Me</h2>
                 <div class="w-20 h-1 bg-accent mx-auto mb-8 sm:mb-12" aria-hidden="true"></div>
@@ -364,7 +499,7 @@
         </section>
 
         <!-- Experience Section -->
-        <section id="experience" class="py-10 sm:py-14 md:py-20">
+        <section id="experience" class="py-10 sm:py-14 md:py-20 section-reveal">
             <div class="container mx-auto px-4 sm:px-6">
                 <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold section-title text-center mb-4">Experience</h2>
                 <div class="w-20 h-1 bg-accent mx-auto mb-8 sm:mb-12" aria-hidden="true"></div>
@@ -375,12 +510,12 @@
                                 <h3 class="text-xl sm:text-2xl font-bold text-white">Game Developer</h3>
                                 <p class="text-base sm:text-lg text-gray-300">Cocos Creator Specialist</p>
                             </div>
-                            <p class="text-sm sm:text-base text-gray-400 font-medium mt-2 sm:mt-0">12 Months Experience
+                            <p class="text-sm sm:text-base text-gray-400 font-medium mt-2 sm:mt-0">1.5 Years Experience
                             </p>
                         </div>
                         <ul class="list-disc list-inside space-y-2 text-gray-300 text-sm sm:text-base">
-                            <li>Developed and published 3 mobile games with <span
-                                    class="font-semibold text-white">700,000+ total downloads</span></li>
+                            <li>Developed and published 15 mobile games with <span
+                                    class="font-semibold text-white">50,00,000+ total downloads</span></li>
                             <li>Mastered <span class="font-semibold accent-color">Cocos Creator</span> engine for 2D
                                 game development</li>
                             <li>Implemented complex <span class="font-semibold accent-color">physics systems</span>,
@@ -390,6 +525,8 @@
                             <li>Optimized game performance across various Android devices</li>
                             <li>Successfully launched games on <span class="font-semibold text-white">Google Play
                                     Store</span></li>
+                            <li>Integrated <span class="font-semibold accent-color">Google AdMob</span> for ad
+                                monetization including banner, interstitial, rewarded, and native ads</li>
                         </ul>
                     </div>
                 </div>
@@ -397,7 +534,7 @@
         </section>
 
         <!-- Education Section -->
-        <section id="education" class="py-10 sm:py-14 md:py-20">
+        <section id="education" class="py-10 sm:py-14 md:py-20 section-reveal">
             <div class="container mx-auto px-4 sm:px-6">
                 <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold section-title text-center mb-4">Education</h2>
                 <div class="w-20 h-1 bg-accent mx-auto mb-8 sm:mb-12" aria-hidden="true"></div>
@@ -418,21 +555,76 @@
         </section>
 
         <!-- Published Games / Projects Section -->
-        <section id="projects" class="py-10 sm:py-14 md:py-20">
+        <section id="projects" class="py-10 sm:py-14 md:py-20 section-reveal">
             <div class="container mx-auto px-4 sm:px-6">
                 <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold section-title text-center mb-4">Published Games
                 </h2>
                 <div class="w-20 h-1 bg-accent mx-auto mb-8 sm:mb-12" aria-hidden="true"></div>
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12">
 
-                    <!-- Project 1 -->
+                  
+
+                    <!-- Project 2 - Baby Phone -->
+                    <article class="project-card glass-effect rounded-xl overflow-hidden">
+                        <div
+                            class="relative h-64 bg-gradient-to-br from-yellow-400 via-orange-400 to-red-400 flex items-center justify-center overflow-hidden">
+                            <div class="absolute inset-0 bg-black/20"></div>
+                            <div
+                                class="absolute top-3 right-3 bg-green-600 text-white px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-bold shadow-lg z-20 border-2 border-white/30">
+                                ⬇️ 4.1M+ Downloads
+                            </div>
+                            <div class="relative z-10 text-center text-white">
+                                <div class="text-5xl sm:text-6xl mb-4">📱</div>
+                                <div class="text-xl sm:text-2xl font-bold mb-2">Baby Phone</div>
+                                <div class="text-base sm:text-xl mb-4">Kids Mobile Games</div>
+                                <div class="flex justify-center mt-4 space-x-3">
+                                    <div
+                                        class="w-8 sm:w-10 h-8 sm:h-10 bg-white/30 rounded-full flex items-center justify-center text-lg sm:text-2xl">
+                                        👶</div>
+                                    <div
+                                        class="w-8 sm:w-10 h-8 sm:h-10 bg-white/30 rounded-full flex items-center justify-center text-lg sm:text-2xl">
+                                        🎵</div>
+                                    <div
+                                        class="w-8 sm:w-10 h-8 sm:h-10 bg-white/30 rounded-full flex items-center justify-center text-lg sm:text-2xl">
+                                        🎮</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6 sm:p-8">
+                            <h3 class="text-xl sm:text-2xl font-bold text-white mb-2">Baby Phone: Kids Mobile Games</h3>
+                            <p class="mb-4 sm:mb-6 text-gray-400 text-sm sm:text-base">A fun and educational baby phone
+                                simulator with interactive mini-games, sounds, and activities for toddlers.</p>
+                            <h4 class="text-base sm:text-lg font-semibold text-white mb-2">Key Contributions & Concepts:
+                            </h4>
+                            <ul class="list-disc list-inside space-y-2 text-gray-300 mb-4 sm:mb-6 text-sm sm:text-base">
+                                <li>Built a highly engaging baby phone experience achieving <span
+                                        class="font-semibold text-white">4.1 million+ downloads</span></li>
+                                <li><span class="font-semibold accent-color">Interactive UI:</span> Designed vibrant,
+                                    touch-responsive phone interfaces with animated buttons, animal sounds, and musical
+                                    interactions</li>
+                                <li><span class="font-semibold accent-color">Google AdMob:</span> Integrated full ad
+                                    monetization with banner, interstitial, rewarded, and native ad formats</li>
+                                <li><span class="font-semibold accent-color">Spine Animation:</span> Implemented
+                                    smooth character animations and transitions to keep toddlers engaged</li>
+                                <li><span class="font-semibold accent-color">Performance:</span> Optimized for smooth
+                                    60fps gameplay across low-end and high-end Android devices</li>
+                            </ul>
+                            <a href="https://play.google.com/store/apps/details?id=com.gamefun.babyphone"
+                                target="_blank" rel="noopener noreferrer"
+                                class="inline-block bg-accent hover-bg-accent text-white font-semibold py-2 px-4 sm:px-6 rounded-lg transition-all duration-300 hover:transform hover:scale-105 focus-visible text-sm sm:text-base">
+                                <i class="fab fa-google-play mr-2" aria-hidden="true"></i>View on Play Store
+                            </a>
+                        </div>
+                    </article>
+
+                      <!-- Project 1 -->
                     <article class="project-card glass-effect rounded-xl overflow-hidden">
                         <div
                             class="relative h-64 bg-gradient-to-br from-purple-600 via-blue-500 to-cyan-400 flex items-center justify-center overflow-hidden">
                             <div class="absolute inset-0 bg-black/20"></div>
                             <div
                                 class="absolute top-3 right-3 bg-green-600 text-white px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-bold shadow-lg z-20 border-2 border-white/30">
-                                ⬇️ 5.50L+ Downloads
+                                ⬇️ 1.1M+ Downloads
                             </div>
                             <div class="relative z-10 text-center text-white">
                                 <div class="text-4xl sm:text-5xl mb-4">🧸</div>
@@ -487,59 +679,6 @@
                         </div>
                     </article>
 
-                    <!-- Project 2 -->
-                    <article class="project-card glass-effect rounded-xl overflow-hidden">
-                        <div
-                            class="relative h-64 bg-gradient-to-br from-yellow-400 via-orange-400 to-red-400 flex items-center justify-center overflow-hidden">
-                            <div class="absolute inset-0 bg-black/20"></div>
-                            <div
-                                class="absolute top-3 right-3 bg-green-600 text-white px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-bold shadow-lg z-20 border-2 border-white/30">
-                                ⬇️ 75K+ Downloads
-                            </div>
-                            <div class="relative z-10 text-center text-white">
-                                <div class="text-5xl sm:text-6xl mb-4">🎮</div>
-                                <div class="text-xl sm:text-2xl font-bold mb-2">Toddler</div>
-                                <div class="text-base sm:text-xl mb-4">Play & Learn</div>
-                                <div class="flex justify-center mt-4 space-x-3">
-                                    <div
-                                        class="w-8 sm:w-10 h-8 sm:h-10 bg-white/30 rounded-full flex items-center justify-center text-lg sm:text-2xl">
-                                        🎨</div>
-                                    <div
-                                        class="w-8 sm:w-10 h-8 sm:h-10 bg-white/30 rounded-full flex items-center justify-center text-lg sm:text-2xl">
-                                        📚</div>
-                                    <div
-                                        class="w-8 sm:w-10 h-8 sm:h-10 bg-white/30 rounded-full flex items-center justify-center text-lg sm:text-2xl">
-                                        🧩</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="p-6 sm:p-8">
-                            <h3 class="text-xl sm:text-2xl font-bold text-white mb-2">Toddler Play and Learn</h3>
-                            <p class="mb-4 sm:mb-6 text-gray-400 text-sm sm:text-base">An educational game designed to
-                                make learning fun and interactive for young children.</p>
-                            <h4 class="text-base sm:text-lg font-semibold text-white mb-2">Key Contributions & Concepts:
-                            </h4>
-                            <ul class="list-disc list-inside space-y-2 text-gray-300 mb-4 sm:mb-6 text-sm sm:text-base">
-                                <li>Led full-cycle development, from prototyping to Play Store deployment</li>
-                                <li><span class="font-semibold accent-color">Gameplay Mechanics:</span> Scripted unique
-                                    mechanics for each mini-game, from virtual bubble wrap to slime simulation, ensuring
-                                    a responsive and relaxing experience</li>
-
-                                <li><span class="font-semibold accent-color">UI/UX:</span> Designed and implemented a
-                                    vibrant, intuitive, and child-friendly user interface that is easy for toddlers to
-                                    navigate</li>
-                                <li><span class="font-semibold accent-color">Performance Optimization:</span> Ensured
-                                    the game runs smoothly across a diverse range of Android devices, maintaining high
-                                    frame rates</li>
-                            </ul>
-                            <a href="https://play.google.com/store/apps/details?id=com.toddler.playandlearn"
-                                target="_blank" rel="noopener noreferrer"
-                                class="inline-block bg-accent hover-bg-accent text-white font-semibold py-2 px-4 sm:px-6 rounded-lg transition-all duration-300 hover:transform hover:scale-105 focus-visible text-sm sm:text-base">
-                                <i class="fab fa-google-play mr-2" aria-hidden="true"></i>View on Play Store
-                            </a>
-                        </div>
-                    </article>
-
                     <!-- Project 3 - New Game -->
                     <article class="project-card glass-effect rounded-xl overflow-hidden">
                         <div
@@ -547,7 +686,7 @@
                             <div class="absolute inset-0 bg-black/20"></div>
                             <div
                                 class="absolute top-3 right-3 bg-green-600 text-white px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-bold shadow-lg z-20 border-2 border-white/30">
-                                ⬇️ 75K+ Downloads
+                                ⬇️ 100K+ Downloads
                             </div>
                             <div class="relative z-10 text-center text-white">
                                 <div class="text-5xl sm:text-6xl mb-4">🦕</div>
@@ -595,12 +734,67 @@
                         </div>
                     </article>
 
+                    <!-- Project 4 - Dino Coloring Game -->
+                    <article class="project-card glass-effect rounded-xl overflow-hidden">
+                        <div
+                            class="relative h-64 bg-gradient-to-br from-pink-400 via-rose-500 to-orange-400 flex items-center justify-center overflow-hidden">
+                            <div class="absolute inset-0 bg-black/20"></div>
+                            <div
+                                class="absolute top-3 right-3 bg-green-600 text-white px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-bold shadow-lg z-20 border-2 border-white/30">
+                                ⬇️ 100K+ Downloads
+                            </div>
+                            <div class="relative z-10 text-center text-white">
+                                <div class="text-5xl sm:text-6xl mb-4">🎨</div>
+                                <div class="text-xl sm:text-2xl font-bold mb-2">Dino Coloring</div>
+                                <div class="text-base sm:text-xl mb-4">Game</div>
+                                <div class="flex justify-center mt-4 space-x-3">
+                                    <div
+                                        class="w-8 sm:w-10 h-8 sm:h-10 bg-white/30 rounded-full flex items-center justify-center text-lg sm:text-2xl">
+                                        ✏️</div>
+                                    <div
+                                        class="w-8 sm:w-10 h-8 sm:h-10 bg-white/30 rounded-full flex items-center justify-center text-lg sm:text-2xl">
+                                        🦕</div>
+                                    <div
+                                        class="w-8 sm:w-10 h-8 sm:h-10 bg-white/30 rounded-full flex items-center justify-center text-lg sm:text-2xl">
+                                        🖌️</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6 sm:p-8">
+                            <h3 class="text-xl sm:text-2xl font-bold text-white mb-2">Dino Coloring Game</h3>
+                            <p class="mb-4 sm:mb-6 text-gray-400 text-sm sm:text-base">An engaging coloring and
+                                drawing game featuring adorable dinosaurs and animals, designed to spark creativity in
+                                young children.</p>
+                            <h4 class="text-base sm:text-lg font-semibold text-white mb-2">Key Contributions & Concepts:
+                            </h4>
+                            <ul class="list-disc list-inside space-y-2 text-gray-300 mb-4 sm:mb-6 text-sm sm:text-base">
+                                <li>Developed intuitive drawing and coloring mechanics with smooth touch-based controls
+                                </li>
+                                <li><span class="font-semibold accent-color">Render Texture:</span> Built a real-time
+                                    drawing canvas using advanced render texture pipeline for seamless coloring
+                                    interactions</li>
+                                <li><span class="font-semibold accent-color">Color System:</span> Implemented a dynamic
+                                    color palette system with smooth color blending and custom brush effects</li>
+                                <li><span class="font-semibold accent-color">Child-Friendly UX:</span> Designed large,
+                                    accessible UI elements and guided experiences tailored for toddlers and young
+                                    children</li>
+                                <li><span class="font-semibold accent-color">Asset Pipeline:</span> Optimized loading
+                                    and rendering of multiple dinosaur templates, backgrounds, and coloring pages</li>
+                            </ul>
+                            <a href="https://play.google.com/store/apps/details?id=dinosaur.coloring.drawing.book.educational.games.kids.toddlers.dino.animals.minigames"
+                                target="_blank" rel="noopener noreferrer"
+                                class="inline-block bg-accent hover-bg-accent text-white font-semibold py-2 px-4 sm:px-6 rounded-lg transition-all duration-300 hover:transform hover:scale-105 focus-visible text-sm sm:text-base">
+                                <i class="fab fa-google-play mr-2" aria-hidden="true"></i>View on Play Store
+                            </a>
+                        </div>
+                    </article>
+
                 </div>
             </div>
         </section>
 
         <!-- Skills Section -->
-        <section id="skills" class="py-10 sm:py-14 md:py-20">
+        <section id="skills" class="py-10 sm:py-14 md:py-20 section-reveal">
             <div class="container mx-auto px-4 sm:px-6">
                 <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold section-title text-center mb-4">Core Competencies
                 </h2>
@@ -650,6 +844,23 @@
                             <span
                                 class="skill-badge text-sm sm:text-lg font-medium py-2 px-4 sm:px-5 rounded-lg">Animation
                                 Systems</span>
+                            <span
+                                class="skill-badge text-sm sm:text-lg font-medium py-2 px-4 sm:px-5 rounded-lg">Google
+                                AdMob</span>
+                        </div>
+                    </div>
+                    <div class="mb-8 sm:mb-10">
+                        <h3 class="text-xl sm:text-2xl font-semibold text-white mb-4 sm:mb-6 text-center md:text-left">
+                            Web Technologies</h3>
+                        <div class="flex flex-wrap gap-3 sm:gap-4 justify-center md:justify-start">
+                            <span
+                                class="skill-badge text-sm sm:text-lg font-medium py-2 px-4 sm:px-5 rounded-lg">HTML5 Canvas</span>
+                            <span
+                                class="skill-badge text-sm sm:text-lg font-medium py-2 px-4 sm:px-5 rounded-lg">CSS3 Animations</span>
+                            <span
+                                class="skill-badge text-sm sm:text-lg font-medium py-2 px-4 sm:px-5 rounded-lg">WebGL / Three.js</span>
+                            <span
+                                class="skill-badge text-sm sm:text-lg font-medium py-2 px-4 sm:px-5 rounded-lg">Responsive Design</span>
                         </div>
                     </div>
                     <div>
@@ -674,7 +885,7 @@
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="py-10 sm:py-14 md:py-20">
+        <section id="contact" class="py-10 sm:py-14 md:py-20 section-reveal">
             <div class="container mx-auto px-4 sm:px-6 text-center">
                 <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold section-title mb-4">Get In Touch</h2>
                 <div class="w-20 h-1 bg-accent mx-auto mb-8 sm:mb-12" aria-hidden="true"></div>
@@ -737,23 +948,27 @@
         </section>
     </main>
 
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
     <!-- Footer -->
     <footer class="bg-900/50 py-4 sm:py-6">
         <div class="container mx-auto px-4 sm:px-6 text-center text-gray-400">
-            <p class="text-sm sm:text-base">&copy; 2025 Tirth Shah. All Rights Reserved.</p>
+            <p class="text-sm sm:text-base">&copy; 2026 Tirth Shah. All Rights Reserved.</p>
         </div>
     </footer>
-
- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
 <script>
     // --- 1. INITIALIZATION & LOADING ---
     window.addEventListener('load', () => {
         document.body.classList.add('loaded');
         initInfiniteTerrain();      // The 3D World
-        initGameFeel();             // Audio & Cursor
+        initCustomCursor();         // Custom Cursor
         initGlitchText();           // The Decryption Effect
         initializeScrollAnimations(); // Scroll Reveals
+        initStatsCounter();         // Stats Counter Animation
     });
 
 
@@ -771,13 +986,13 @@
         camera.position.set(0, 4, 12); 
         camera.rotation.x = -0.2;
 
-        const renderer = new THREE.WebGLRenderer({ alpha: false, antialias: true });
+        const renderer = new THREE.WebGLRenderer({ alpha: false, antialias: false });
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         container.appendChild(renderer.domElement);
 
         // -- The Grid --
-        const planeGeometry = new THREE.PlaneGeometry(70, 70, 60, 60);
+        const planeGeometry = new THREE.PlaneGeometry(70, 70, 30, 30);
         const planeMaterial = new THREE.MeshBasicMaterial({
             color: 0x3b82f6, // Neon Blue
             wireframe: true,
@@ -793,7 +1008,7 @@
         const pGeo = new THREE.BoxGeometry(0.15, 0.15, 0.15);
         const pMat = new THREE.MeshBasicMaterial({ color: 0x60a5fa });
         
-        for(let i=0; i<150; i++) {
+        for(let i=0; i<40; i++) {
             const mesh = new THREE.Mesh(pGeo, pMat);
             mesh.position.set((Math.random()-0.5)*60, Math.random()*8, (Math.random()-0.5)*60);
             mesh.userData = { speed: Math.random()*0.04+0.01 };
@@ -850,38 +1065,76 @@
     }
 
 
-    // --- 3. "HACKER" TEXT DECRYPTION EFFECT ---
-    // function initGlitchText() {
-    //     const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&";
+    // --- 3. "HACKER" TEXT DECRYPTION EFFECT (Hero only) ---
+    function initGlitchText() {
+        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&";
         
-    //     // Target H1 and H2 tags for the effect
-    //     const targets = document.querySelectorAll('h1, h2');
+        const target = document.querySelector('#home h1');
+        if (!target) return;
         
-    //     targets.forEach(element => {
-    //         let iterations = 0;
-    //         const originalText = element.innerText;
-            
-    //         // Wait a bit before starting
-    //         setTimeout(() => {
-    //             const interval = setInterval(() => {
-    //                 element.innerText = originalText.split("")
-    //                     .map((letter, index) => {
-    //                         if(index < iterations) return originalText[index];
-    //                         return letters[Math.floor(Math.random() * 26)];
-    //                     })
-    //                     .join("");
+        // Save original HTML so we can restore the <span> styling at the end
+        const originalHTML = target.innerHTML;
+        const originalText = target.innerText;
+        let iterations = 0;
+        
+        setTimeout(() => {
+            const interval = setInterval(() => {
+                target.innerText = originalText.split("")
+                    .map((letter, index) => {
+                        if(index < iterations) return originalText[index];
+                        if(letter === ' ') return ' ';
+                        return letters[Math.floor(Math.random() * letters.length)];
+                    })
+                    .join("");
+                
+                if(iterations >= originalText.length) {
+                    clearInterval(interval);
+                    // Restore original HTML to bring back the blue "Engaging" span
+                    target.innerHTML = originalHTML;
+                }
+                iterations += 1 / 3;
+            }, 30);
+        }, 500);
+    }
+
+    // --- STATS COUNTER ANIMATION ---
+    function initStatsCounter() {
+        const counters = document.querySelectorAll('.stat-number');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const target = parseFloat(el.dataset.target);
+                    const suffix = el.dataset.suffix || '';
+                    const isDecimal = el.dataset.decimal === 'true';
+                    const duration = 2000;
+                    const start = performance.now();
                     
-    //                 if(iterations >= originalText.length) clearInterval(interval);
-    //                 iterations += 1 / 3; // Speed of decryption
-    //             }, 30);
-    //         }, 500);
-    //     });
-    // }
+                    function update(now) {
+                        const elapsed = now - start;
+                        const progress = Math.min(elapsed / duration, 1);
+                        // Ease out cubic
+                        const eased = 1 - Math.pow(1 - progress, 3);
+                        const current = isDecimal 
+                            ? (target * eased).toFixed(1) 
+                            : Math.floor(target * eased);
+                        el.textContent = current + suffix;
+                        if (progress < 1) requestAnimationFrame(update);
+                    }
+                    requestAnimationFrame(update);
+                    observer.unobserve(el);
+                }
+            });
+        }, { threshold: 0.5 });
+        counters.forEach(c => observer.observe(c));
+    }
 
 
-    // --- 4. GAME FEEL (AUDIO SYNTHESIS & CUSTOM CURSOR) ---
-    function initGameFeel() {
-        // A. Custom Cursor Setup
+    // --- 4. CUSTOM CURSOR (No Audio) ---
+    function initCustomCursor() {
+        // Only show custom cursor on Desktop
+        if (!window.matchMedia("(min-width: 768px)").matches) return;
+
         const cursor = document.createElement('div');
         cursor.style.cssText = `
             position: fixed; top: 0; left: 0; width: 20px; height: 20px;
@@ -895,18 +1148,14 @@
             background: white; border-radius: 50%; pointer-events: none;
             z-index: 9999; transform: translate(-50%, -50%);
         `;
-        
-        // Only show custom cursor on Desktop
-        if (window.matchMedia("(min-width: 768px)").matches) {
-            document.body.appendChild(cursor);
-            document.body.appendChild(dot);
-            document.body.style.cursor = 'none'; // Hide default cursor
-            
-            // Add 'a' tags to override cursor: pointer
-            const style = document.createElement('style');
-            style.innerHTML = `a, button, input, textarea { cursor: none !important; }`;
-            document.head.appendChild(style);
-        }
+
+        document.body.appendChild(cursor);
+        document.body.appendChild(dot);
+        document.body.style.cursor = 'none';
+
+        const style = document.createElement('style');
+        style.innerHTML = `a, button, input, textarea { cursor: none !important; }`;
+        document.head.appendChild(style);
 
         let mouseX = 0, mouseY = 0;
         let cursorX = 0, cursorY = 0;
@@ -914,14 +1163,11 @@
         document.addEventListener('mousemove', (e) => {
             mouseX = e.clientX;
             mouseY = e.clientY;
-            // Dot follows instantly
             dot.style.left = mouseX + 'px';
             dot.style.top = mouseY + 'px';
         });
 
-        // Smooth follow loop for the circle
         function cursorLoop() {
-            // Linear Interpolation (Lerp) for smooth lag
             cursorX += (mouseX - cursorX) * 0.2;
             cursorY += (mouseY - cursorY) * 0.2;
             cursor.style.left = cursorX + 'px';
@@ -930,49 +1176,11 @@
         }
         cursorLoop();
 
-
-        // B. Procedural Audio (Synthesizer)
-        // Creates a sound context
-        const AudioContext = window.AudioContext || window.webkitAudioContext;
-        if (!AudioContext) return;
-        const audioCtx = new AudioContext();
-
-        function playSound(type) {
-            if (audioCtx.state === 'suspended') audioCtx.resume();
-            
-            const osc = audioCtx.createOscillator();
-            const gainNode = audioCtx.createGain();
-            
-            osc.connect(gainNode);
-            gainNode.connect(audioCtx.destination);
-
-            if (type === 'hover') {
-                // High tech "blip"
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(400, audioCtx.currentTime);
-                osc.frequency.exponentialRampToValueAtTime(600, audioCtx.currentTime + 0.05);
-                gainNode.gain.setValueAtTime(0.05, audioCtx.currentTime);
-                gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.05);
-                osc.start();
-                osc.stop(audioCtx.currentTime + 0.05);
-            } else if (type === 'click') {
-                // Deeper "select" sound
-                osc.type = 'triangle';
-                osc.frequency.setValueAtTime(300, audioCtx.currentTime);
-                osc.frequency.exponentialRampToValueAtTime(100, audioCtx.currentTime + 0.1);
-                gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
-                gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
-                osc.start();
-                osc.stop(audioCtx.currentTime + 0.1);
-            }
-        }
-
-        // Add sound to all interactive elements
+        // Hover effects (no audio)
         document.querySelectorAll('a, button, .project-card').forEach(el => {
             el.addEventListener('mouseenter', () => {
                 cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
                 cursor.style.backgroundColor = 'rgba(59, 130, 246, 0.1)';
-                playSound('hover');
             });
             el.addEventListener('mouseleave', () => {
                 cursor.style.transform = 'translate(-50%, -50%) scale(1)';
@@ -980,7 +1188,6 @@
             });
             el.addEventListener('mousedown', () => {
                 cursor.style.transform = 'translate(-50%, -50%) scale(0.8)';
-                playSound('click');
             });
         });
     }
@@ -1057,17 +1264,55 @@
         });
     }
 
-    // Header Background
+    // Header Background + Active Nav + Back to Top
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sectionIds = ['about', 'experience', 'education', 'projects', 'skills', 'contact'];
+    const backToTopBtn = document.getElementById('back-to-top');
+
     window.addEventListener('scroll', () => {
         const h = document.querySelector('header');
-        if(window.scrollY > 50) {
+        const scrollY = window.scrollY;
+
+        // Header background
+        if(scrollY > 50) {
             h.style.background = 'rgba(17, 24, 39, 0.95)';
             h.style.borderBottom = '1px solid rgba(59, 130, 246, 0.3)';
         } else {
             h.style.background = 'rgba(17, 24, 39, 0.6)';
             h.style.borderBottom = '1px solid rgba(255, 255, 255, 0.05)';
         }
+
+        // Active nav link highlighting
+        let currentSection = '';
+        sectionIds.forEach(id => {
+            const section = document.getElementById(id);
+            if(section && scrollY >= section.offsetTop - 120) {
+                currentSection = id;
+            }
+        });
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if(link.getAttribute('href') === '#' + currentSection) {
+                link.classList.add('active');
+            }
+        });
+
+        // Back to top button
+        if(backToTopBtn) {
+            if(scrollY > 500) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        }
     });
+
+    // Back to top click
+    if(backToTopBtn) {
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
 
 </script>
 
